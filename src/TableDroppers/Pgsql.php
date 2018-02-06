@@ -10,7 +10,6 @@ class Pgsql implements TableDropper
     {
         $tableNames = $this->getTableNames();
 
-
         if ($tableNames->isEmpty()) {
             return;
         }
