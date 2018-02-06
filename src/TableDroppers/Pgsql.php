@@ -10,6 +10,7 @@ class Pgsql implements TableDropper
     {
         $tableNames = $this->getTableNames();
 
+
         if ($tableNames->isEmpty()) {
             return;
         }
@@ -32,6 +33,6 @@ class Pgsql implements TableDropper
 
         return collect(
             DB::select("SELECT schemaname || '.' || tablename AS table FROM pg_catalog.pg_tables WHERE schemaname IN (".$binds.')', $schemas)
-        )->pluck('table');
+        )->pluck('table')->forget('spatial_ref_sys');
     }
 }
